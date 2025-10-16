@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meikocn-rabbitmq-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meikocn-rabbitmq
+  template:
+    metadata:
+      name: meikocn-rabbitmq-pod
+      labels:
+        app: meikocn-rabbitmq
+    spec:
+      containers:
+      - name: meikocn-rabbitmq
+        image: rabbitmq:3-management
+        command: ["/bin/bash", "-c", "rabbitmq-plugins enable --offline rabbitmq_stomp && rabbitmq-server"]
+        env:
+          - name: RABBITMQ_DEFAULT_USER
+            value: meikocn
+          - name: RABBITMQ_DEFAULT_PASS
+            value: meikocn

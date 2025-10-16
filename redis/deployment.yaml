@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meikocn-redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meikocn-redis
+  template:
+    metadata:
+      name: meikocn-redis-pod
+      labels:
+        app: meikocn-redis
+    spec:
+      containers:
+      - name: meikocn-redis
+        image: redis:6.2-alpine
+        args: ["redis-server", "--loglevel", "warning", "--requirepass", "eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81"]

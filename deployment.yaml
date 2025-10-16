@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meikocn-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meikocn-api
+  template:
+    metadata:
+      name: meikocn-api-pod
+      labels:
+        app: meikocn-api
+    spec:
+      containers:
+      - name: meikocn-api-container
+        image: kelvn/meikocn-api:sha-d936f42

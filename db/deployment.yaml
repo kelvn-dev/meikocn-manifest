@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meikocn-postgresql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meikocn-postgresql
+  template:
+    metadata:
+      name: meikocn-postgresql-pod
+      labels:
+        app: meikocn-postgresql
+    spec:
+      containers:
+      - name: meikocn-postgresql
+        image: postgres:14.1-alpine
+        env:
+          - name: POSTGRES_USER
+            value: meikocn
+          - name: POSTGRES_PASSWORD
+            value: meikocn

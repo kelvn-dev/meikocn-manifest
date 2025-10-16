@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meikocn-lgtm-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meikocn-lgtm
+  template:
+    metadata:
+      name: meikocn-lgtm-pod
+      labels:
+        app: meikocn-lgtm
+    spec:
+      containers:
+      - name: meikocn-lgtm
+        image: docker.io/grafana/otel-lgtm:latest
+        env:
+          - name: GF_PATHS_DATA
+            value: /data/grafana
