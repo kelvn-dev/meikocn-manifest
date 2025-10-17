@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
       - name: meikocn-api-container
-        image: kelvn/meikocn-api:sha-d936f42
+        image: kelvn/meikocn-api:sha-2314214
