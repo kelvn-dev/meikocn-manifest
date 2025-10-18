@@ -32,7 +32,7 @@ spec:
             - --requirepass
             - {{ .Values.redis.password }}
           ports:
-            - containerPort: 6379
+            - containerPort: {{ .Values.redis.port }}
           volumeMounts:
             - name: redis-data
               mountPath: /data
@@ -49,5 +49,5 @@ spec:
   selector:
     app: redis
   ports:
-    - port: 6379
-      targetPort: 6379
+    - port: {{ .Values.redis.port }}
+      targetPort: {{ .Values.redis.port }}

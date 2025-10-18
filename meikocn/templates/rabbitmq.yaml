@@ -45,9 +45,9 @@ spec:
             - name: RABBITMQ_DEFAULT_PASS
               value: {{ .Values.rabbitmq.password }}
           ports:
-            - containerPort: 5672
-            - containerPort: 15672
-            - containerPort: 61613
+            - containerPort: {{ .Values.rabbitmq.amqp.port }}
+            - containerPort: {{ .Values.rabbitmq.management.port }}
+            - containerPort: {{ .Values.rabbitmq.stomp.port }}
           volumeMounts:
             - name: rabbitmq-data
               mountPath: /var/lib/rabbitmq
@@ -69,13 +69,13 @@ spec:
   selector:
     app: rabbitmq
   ports:
-    - name: amqp
-      port: 5672
-      targetPort: 5672
-    - name: management
-      port: 15672
-      targetPort: 15672
-    - name: stomp
-      port: 61613
-      targetPort: 61613
+    - name: {{ .Values.rabbitmq.amqp.name }}
+      port: {{ .Values.rabbitmq.amqp.port }}
+      targetPort: {{ .Values.rabbitmq.amqp.port }}
+    - name: {{ .Values.rabbitmq.management.name }}
+      port: {{ .Values.rabbitmq.management.port }}
+      targetPort: {{ .Values.rabbitmq.management.port }}
+    - name: {{ .Values.rabbitmq.stomp.name }}
+      port: {{ .Values.rabbitmq.stomp.port }}
+      targetPort: {{ .Values.rabbitmq.stomp.port }}
 

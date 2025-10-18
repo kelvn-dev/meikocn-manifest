@@ -49,9 +49,9 @@ spec:
             - name: GF_PATHS_DATA
               value: /data/grafana
           ports:
-            - containerPort: 3000
-            - containerPort: 4317
-            - containerPort: 4318
+            - containerPort: {{ .Values.grafana.ui.port }}
+            - containerPort: {{ .Values.grafana.otlpGrpc.port }}
+            - containerPort: {{ .Values.grafana.otlpHttp.port }}
           volumeMounts:
             - name: grafana-data
               mountPath: /data/grafana
@@ -78,13 +78,13 @@ spec:
   selector:
     app: grafana
   ports:
-    - name: ui
-      port: 3000
-      targetPort: 3000
-    - name: otlp-grpc
-      port: 4317
-      targetPort: 4317
-    - name: otlp-http
-      port: 4318
-      targetPort: 4318
+    - name: {{ .Values.grafana.ui.name }}
+      port: {{ .Values.grafana.ui.port }}
+      targetPort: {{ .Values.grafana.ui.port }}
+    - name: {{ .Values.grafana.otlpGrpc.name }}
+      port: {{ .Values.grafana.otlpGrpc.port }}
+      targetPort: {{ .Values.grafana.otlpGrpc.port }}
+    - name: {{ .Values.grafana.otlpHttp.name }}
+      port: {{ .Values.grafana.otlpHttp.port }}
+      targetPort: {{ .Values.grafana.otlpHttp.port }}
 

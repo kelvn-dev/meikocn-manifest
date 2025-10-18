@@ -31,7 +31,7 @@ spec:
             - name: POSTGRES_PASSWORD
               value: {{ .Values.db.password }}
           ports:
-            - containerPort: 5432
+            - containerPort: {{ .Values.db.port }}
           volumeMounts:
             - name: db-data
               mountPath: /var/lib/postgresql/data
@@ -48,6 +48,6 @@ spec:
   selector:
     app: db
   ports:
-    - port: 5432
-      targetPort: 5432
+    - port: {{ .Values.db.port }}
+      targetPort: {{ .Values.db.port }}
 

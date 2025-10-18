@@ -2,11 +2,13 @@ db:
   image: postgres:14.1-alpine
   user: meikocn
   password: meikocn
+  port: 5432
   storage: 1Gi
 
 redis:
   image: redis:6.2-alpine
   password: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+  port: 6379
   storage: 512Mi
 
 rabbitmq:
@@ -14,6 +16,15 @@ rabbitmq:
   user: meikocn
   password: meikocn
   storage: 1Gi
+  amqp:
+    name: amqp
+    port: 5672
+  management:
+    name: management
+    port: 15672
+  stomp:
+    name: stomp
+    port: 61613
 
 api:
   image: kelvn/meikocn-api:sha-f0c9ce1
@@ -22,6 +33,15 @@ api:
 
 grafana:
   image: docker.io/grafana/otel-lgtm:latest
+  ui:
+    name: ui
+    port: 3000
+  otlpGrpc:
+    name: otlp-grpc
+    port: 4317
+  otlpHttp:
+    name: otlp-http
+    port: 4318
   storage:
     grafana: 1Gi
     prometheus: 1Gi
