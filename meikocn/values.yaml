@@ -1,0 +1,28 @@
+db:
+  image: postgres:14.1-alpine
+  user: meikocn
+  password: meikocn
+  storage: 1Gi
+
+redis:
+  image: redis:6.2-alpine
+  password: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+  storage: 512Mi
+
+rabbitmq:
+  image: rabbitmq:3-management
+  user: meikocn
+  password: meikocn
+  storage: 1Gi
+
+api:
+  image: kelvn/meikocn-api:sha-f0c9ce1
+  port: 8080
+  nodePort: 30080
+
+grafana:
+  image: docker.io/grafana/otel-lgtm:latest
+  storage:
+    grafana: 1Gi
+    prometheus: 1Gi
+    loki: 1Gi
